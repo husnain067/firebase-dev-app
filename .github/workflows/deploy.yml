@@ -1,8 +1,17 @@
-name: Deploy to Firebase on Push to Main
+name: Firebase Deploy - PR Preview & Production
 
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# Add this permissions block to fix the 403 error
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+  statuses: write
 
 jobs:
   build-and-deploy:

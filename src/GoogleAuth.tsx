@@ -211,6 +211,7 @@ export default function GoogleAuth() {
                             style={styles.avatar}
                         />
                     )}
+                    <h2 style={styles.name}>Stagging</h2>
                     <h2 style={styles.name}>{user.displayName}</h2>
                     <p style={styles.email}>{user.email}</p>
 
