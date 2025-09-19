@@ -1,12 +1,11 @@
-name: Firebase Deploy - PR Preview & Production
+name: Simple Firebase Deploy with Staging
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, staging ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, staging ]
 
-# Add this permissions block to fix the 403 error
 permissions:
   contents: read
   checks: write
@@ -14,7 +13,7 @@ permissions:
   statuses: write
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     
     steps:
@@ -33,10 +32,10 @@ jobs:
     - name: Build React App
       run: npm run build
       
-    - name: Deploy to Firebase Hosting
+    - name: Deploy to Firebase
       uses: FirebaseExtended/action-hosting-deploy@v0
       with:
         repoToken: '${{ secrets.GITHUB_TOKEN }}'
         firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
         projectId: dev-app-526e2
-        channelId: live
+        channelId: ${{ github.ref == 'refs/heads/main' && 'live' || github.ref == 'refs/heads/staging' && 'staging' || format('pr-{0}', github.event.number) }}

@@ -211,7 +211,6 @@ export default function GoogleAuth() {
                             style={styles.avatar}
                         />
                     )}
-                    <h2 style={styles.name}>Stagging</h2>
                     <h2 style={styles.name}>{user.displayName}</h2>
                     <p style={styles.email}>{user.email}</p>
 
@@ -227,7 +226,7 @@ export default function GoogleAuth() {
             ) : (
                 <div>
                     <button style={styles.button} onClick={handleSignIn}>
-                        Sign in with Google 2.0
+                        Sign in with Google 2.0 Stagging
                     </button>
 
                     {/* Show instructions for Flutter environment */}
