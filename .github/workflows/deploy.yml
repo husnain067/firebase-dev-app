@@ -1,7 +1,9 @@
-name: Deploy to Firebase on Push to Main
+name: Firebase Deploy - PR Preview & Production
 
 on:
   push:
+    branches: [ main ]
+  pull_request:
     branches: [ main ]
 
 jobs:
